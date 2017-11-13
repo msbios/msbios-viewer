@@ -1,0 +1,34 @@
+<?php
+/**
+ * @access protected
+ * @author Judzhin Miles <info[woof-woof]msbios.com>
+ */
+namespace MSBios\Viewer;
+
+return [
+
+    Module::class => [
+
+        /**
+         * Reader resolvers.
+         *
+         * Expects: array
+         * Default: [
+         *     Resolver\ReaderSessionResolver::class => 100
+         * ]
+         */
+        'reader_resolvers' => [
+        ],
+
+        /**
+         * Writer resolvers.
+         *
+         * Expects: array
+         * Default: [
+         *     Resolver\WriteSessionResolver::class => 100
+         * ]
+         */
+        'write_resolvers' => [
+        ]
+    ]
+];
