@@ -19,13 +19,6 @@ return [
                 Factory\ViewerManagerFactory::class,
             ResolverManager::class =>
                 Factory\ResolverManagerFactory::class,
-
-            // Resolvers
-            Resolver\ReaderSessionResolver::class =>
-                InvokableFactory::class,
-            Resolver\WriteSessionResolver::class =>
-                InvokableFactory::class,
-
         ]
     ],
 

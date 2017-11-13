@@ -42,5 +42,4 @@ class IndexController extends AbstractActionController implements ViewerManagerA
 
         return $viewManager;
     }
-
 }

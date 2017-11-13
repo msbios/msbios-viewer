@@ -5,7 +5,6 @@
  */
 namespace MSBios\Viewer\Factory;
 
-
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
 use MSBios\Resolver\ResolverManagerInterface;
@@ -39,9 +38,10 @@ class ResolverManagerFactory implements FactoryInterface
          * @var string $resolverName
          * @var int $priority
          */
-        foreach ($config['viewer_resolvers'] as $resolverName => $priority ) {
+        foreach ($config['viewer_resolvers'] as $resolverName => $priority) {
             $resolverManager->attach(
-                $container->get($resolverName), $priority
+                $container->get($resolverName),
+                $priority
             );
         }
 

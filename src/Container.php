@@ -24,5 +24,4 @@ class Container extends DefaultContainer
     {
         parent::__construct($name, $manager);
     }
-
 }

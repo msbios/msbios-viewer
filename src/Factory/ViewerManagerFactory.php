@@ -6,7 +6,7 @@
 namespace MSBios\Viewer\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Viewer\Container;
+use MSBios\Viewer\Module;
 use MSBios\Viewer\ResolverManager;
 use MSBios\Viewer\ViewerManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -17,7 +17,6 @@ use Zend\ServiceManager\Factory\FactoryInterface;
  */
 class ViewerManagerFactory implements FactoryInterface
 {
-
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
@@ -27,7 +26,7 @@ class ViewerManagerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return new ViewerManager(
-            $container->get(Container::class),
+            $container->get($container->get(Module::class)['container']),
             $container->get(ResolverManager::class)
         );
     }
