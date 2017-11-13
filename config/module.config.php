@@ -13,12 +13,12 @@ return [
         'factories' => [
             Module::class =>
                 Factory\ModuleFactory::class,
+            Container::class =>
+                InvokableFactory::class,
             ViewerManager::class =>
                 Factory\ViewerManagerFactory::class,
-            ReaderManager::class =>
-                Factory\ReaderManagerFactory::class,
-            WriterManager::class =>
-                Factory\WriterManagerFactory::class,
+            ResolverManager::class =>
+                Factory\ResolverManagerFactory::class,
 
             // Resolvers
             Resolver\ReaderSessionResolver::class =>
@@ -32,27 +32,21 @@ return [
     Module::class => [
 
         /**
+         * Container.
+         *
+         * Expects: string
+         * Default: MSBios\Viewer\Container::class
+         */
+        'container' => Container::class,
+
+        /**
          * Reader resolvers.
          *
          * Expects: array
          * Default: [
-         *     Resolver\ReaderSessionResolver::class => 100
          * ]
          */
-        'reader_resolvers' => [
-            Resolver\ReaderSessionResolver::class => 100
+        'viewer_resolvers' => [
         ],
-
-        /**
-         * Writer resolvers.
-         *
-         * Expects: array
-         * Default: [
-         *     Resolver\WriteSessionResolver::class => 100
-         * ]
-         */
-        'write_resolvers' => [
-            Resolver\WriteSessionResolver::class => 100
-        ]
     ]
 ];

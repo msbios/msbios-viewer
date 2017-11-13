@@ -10,10 +10,10 @@ use MSBios\Resolver\AbstractResolverManager;
 use MSBios\Resolver\ResolverInterface;
 
 /**
- * Class ReaderManager
+ * Class ResolverManager
  * @package MSBios\Viewer
  */
-class ReaderManager extends AbstractResolverManager
+class ResolverManager extends AbstractResolverManager
 {
     /**
      * @param array ...$arguments

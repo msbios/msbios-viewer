@@ -7,7 +7,6 @@
 namespace MSBios\Viewer;
 
 use MSBios\Resolver\ResolverManagerInterface;
-use Zend\Session\Container;
 
 /**
  * Class ViewerManager
@@ -16,23 +15,20 @@ use Zend\Session\Container;
 class ViewerManager implements ViewerManagerInterface
 {
     /** @var ResolverManagerInterface */
-    protected $readerManager;
+    protected $container;
 
     /** @var  ResolverManagerInterface */
-    protected $writerManager;
+    protected $resolverManager;
 
     /**
      * ViewerManager constructor.
-     * @param ResolverManagerInterface $readerManager
-     * @param ResolverManagerInterface $writerManager
+     * @param Container $container
+     * @param ResolverManagerInterface $resolverManager
      */
-    public function __construct(
-        ResolverManagerInterface $readerManager,
-        ResolverManagerInterface $writerManager
-    )
+    public function __construct(Container $container, ResolverManagerInterface $resolverManager)
     {
-        $this->readerManager = $readerManager;
-        $this->writerManager = $writerManager;
+        $this->container = $container;
+        $this->resolverManager = $resolverManager;
     }
 
     /**
@@ -41,9 +37,14 @@ class ViewerManager implements ViewerManagerInterface
      */
     public function watch(ViewerableAwareInterface $viewer)
     {
-        if (!$this->readerManager->resolve($viewer)) {
-            return $this->writerManager->resolve($viewer);
+        /** @var string $identifier */
+        $identifier = $viewer->getViewerIdentifier();
+        if (!isset($this->container[$viewer->getViewerIdentifier()])) {
+            $this->container[$identifier] = true; // Write to Session Container
+            $this->resolverManager->resolve($viewer); // Push Do Something to Resolvers
+            return true;
         }
+
         return false;
     }
 }

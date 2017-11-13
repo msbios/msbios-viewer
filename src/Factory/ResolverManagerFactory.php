@@ -5,30 +5,32 @@
  */
 namespace MSBios\Viewer\Factory;
 
-use Interop\Container\ContainerInterface;
 
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
 use MSBios\Resolver\ResolverManagerInterface;
 use MSBios\Viewer\Module;
-use MSBios\Viewer\ReaderManager;
-use MSBios\Viewer\WriterManager;
+use MSBios\Viewer\ResolverManager;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class WriterManagerFactory
+ * Class ResolverManagerFactory
  * @package MSBios\Viewer\Factory
  */
-class WriterManagerFactory implements FactoryInterface
+class ResolverManagerFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return ResolverManagerInterface|ReaderManager
+     * @return ResolverManagerInterface|ResolverManager
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var ResolverManagerInterface $resolverManager */
-        $resolverManager = new WriterManager;
+        $resolverManager = new ResolverManager;
 
         /** @var array $config */
         $config = $container->get(Module::class);
@@ -37,7 +39,7 @@ class WriterManagerFactory implements FactoryInterface
          * @var string $resolverName
          * @var int $priority
          */
-        foreach ($config['write_resolvers'] as $resolverName => $priority ) {
+        foreach ($config['viewer_resolvers'] as $resolverName => $priority ) {
             $resolverManager->attach(
                 $container->get($resolverName), $priority
             );
