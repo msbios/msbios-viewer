@@ -7,34 +7,43 @@
 namespace MSBios\Viewer;
 
 use MSBios\Resolver\ResolverManagerInterface;
+use Zend\Session\Container;
 
 /**
  * Class ViewerManager
  * @package MSBios\Viewer
  */
-class ViewerManager
+class ViewerManager implements ViewerManagerInterface
 {
     /** @var ResolverManagerInterface */
-    protected $resolverManager;
+    protected $readerManager;
+
+    /** @var  ResolverManagerInterface */
+    protected $writerManager;
 
     /**
      * ViewerManager constructor.
-     * @param ResolverManagerInterface $resolverManager
+     * @param ResolverManagerInterface $readerManager
+     * @param ResolverManagerInterface $writerManager
      */
-    public function __construct(ResolverManagerInterface $resolverManager)
+    public function __construct(
+        ResolverManagerInterface $readerManager,
+        ResolverManagerInterface $writerManager
+    )
     {
-        $this->resolverManager = $resolverManager;
+        $this->readerManager = $readerManager;
+        $this->writerManager = $writerManager;
     }
 
     /**
-     * @param array ...$arguments
-     * @return $this
+     * @param ViewerableAwareInterface $viewer
+     * @return bool|mixed
      */
-    public function watch(...$arguments)
+    public function watch(ViewerableAwareInterface $viewer)
     {
-        if ($this->resolverManager->resolve($arguments)) {
-
+        if (!$this->readerManager->resolve($viewer)) {
+            return $this->writerManager->resolve($viewer);
         }
-        return $this;
+        return false;
     }
 }

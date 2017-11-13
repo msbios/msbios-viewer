@@ -6,3 +6,14 @@
 
 ?>
 <h1>Viewer Manager Module</h1>
+
+<?php if ($this->watched) : ?>
+    <p>Page was marked as viewed!</p>
+<?php else: ?>
+    <p>This page has already been viewed.</p>
+<?php endif; ?>
+
+<ul>
+    <li><a href="/?page=<?= $this->page - 1; ?>">Prev Page</a></li>
+    <li><a href="/?page=<?= $this->page + 1; ?>">Next Page</a></li>
+</ul>

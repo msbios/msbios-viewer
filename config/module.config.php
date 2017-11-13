@@ -3,7 +3,8 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-namespace MSBios\Assetic;
+namespace MSBios\Viewer;
+
 
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -11,99 +12,24 @@ return [
 
     'service_manager' => [
         'factories' => [
-            Module::class =>
-                Factory\ModuleFactory::class,
+            Module::class => Factory\ModuleFactory::class,
+            ViewerManager::class => Factory\ViewerManagerFactory::class,
+            ReaderManager::class => Factory\ReaderManagerFactory::class,
+            WriterManager::class => Factory\WriterManagerFactory::class,
 
-            // Listeners
-            Listener\AssetListener::class =>
-                Factory\AssetListenerFactory::class,
+            // Resolvers
+            Resolver\ReaderSessionResolver::class => InvokableFactory::class,
+            Resolver\WriteSessionResolver::class => InvokableFactory::class,
 
-            // Managers
-            ViewerManager::class =>
-                Factory\AssetManagerFactory::class,
-            CacheManager::class =>
-                InvokableFactory::class,
-            FilterManager::class =>
-                InvokableFactory::class,
-            ResolverManager::class =>
-                Factory\ResolverManagerFactory::class,
-
-            // Reolvers
-            Resolver\CollectionResolver::class =>
-                Factory\CollectionResolverFactory::class,
-            Resolver\MapResolver::class =>
-                Factory\MapResolverFactory::class,
-            Resolver\PathStackResolver::class =>
-                Factory\PathStackResolverFactory::class,
-            Resolver\MimeResolver::class =>
-                InvokableFactory::class
         ]
     ],
 
     Module::class => [
-
-        /**
-         *
-         * Expects: bool
-         * Default: true
-         */
-        'default_cleanup_buffer' => true,
-
-        /**
-         * Enables or disables the deploy.
-         *
-         * Expects: array
-         * Default: [
-         *     Listener\AssetListener::class =>
-         *         'listener' => Listener\AssetListener::class,
-         *         'method' => 'onDispatchError',
-         *         'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
-         *         'priority' => 1,
-         *     ],
-         * ]
-         */
-        'listeners' => [
-            Listener\AssetListener::class => [
-                'listener' => Listener\AssetListener::class,
-                'method' => 'onDispatchError',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
-                'priority' => 1,
-            ],
+        'reader_resolvers' => [
+            Resolver\ReaderSessionResolver::class => 100
         ],
-
-        /**
-         *
-         * Expects: array
-         * Default: true
-         */
-        'resolvers' => [
-            Resolver\MapResolver::class => 100900,
-            Resolver\CollectionResolver::class => 100700,
-            Resolver\PathStackResolver::class => 100500,
-        ],
-
-        'collections' => [
-        ],
-
-        'paths' => [
-        ],
-
-        'maps' => [
-        ],
-
-        'filters' => [
-        ],
-
-        'caching' => [
-        ],
-
-        // 'view_helper' => [
-        //     'cache' => 'Application\Cache\Redis',
-        //  // You will need to require the factory used for the cache yourself.
-        //     'append_timestamp' => true, // optional, if false never append a query param
-        //     'query_string' => '_', // optional
-        // ],
-        //
-
+        'write_resolvers' => [
+            Resolver\WriteSessionResolver::class => 100
+        ]
     ],
 ];

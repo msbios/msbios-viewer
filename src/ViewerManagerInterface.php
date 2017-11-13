@@ -13,8 +13,8 @@ namespace MSBios\Viewer;
 interface ViewerManagerInterface
 {
     /**
-     * @param array ...$arguments
+     * @param ViewerableAwareInterface $viewer
      * @return mixed
      */
-    public function watch(...$arguments);
+    public function watch(ViewerableAwareInterface $viewer);
 }

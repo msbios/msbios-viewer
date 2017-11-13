@@ -6,6 +6,7 @@
  */
 namespace MSBios\Viewer;
 
+use MSBios\Viewer\Initializer\ViewerManagerInitializer;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -17,6 +18,9 @@ return [
         'aliases' => [
             \MSBios\Application\Controller\IndexController::class =>
                 Controller\IndexController::class
+        ],
+        'initializers' => [
+            new ViewerManagerInitializer
         ]
     ]
 ];

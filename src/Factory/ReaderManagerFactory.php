@@ -9,27 +9,41 @@ namespace MSBios\Viewer\Factory;
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
 use MSBios\Resolver\ResolverManagerInterface;
-use MSBios\Viewer\ResolverManager;
+use MSBios\Viewer\Module;
+use MSBios\Viewer\ReaderManager;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ResolverManagerFactory
+ * Class ReaderManagerFactory
  * @package MSBios\Viewer\Factory
  */
-class ResolverManagerFactory implements FactoryInterface
+class ReaderManagerFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return ResolverManagerInterface|ResolverManager
+     * @return ResolverManagerInterface|ReaderManager
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var ResolverManagerInterface $resolverManager */
-        $resolverManager = new ResolverManager;
+        $resolverManager = new ReaderManager;
+
+        /** @var array $config */
+        $config = $container->get(Module::class);
+
+        /**
+         * @var string $resolverName
+         * @var int $priority
+         */
+        foreach ($config['reader_resolvers'] as $resolverName => $priority ) {
+            $resolverManager->attach(
+                $container->get($resolverName), $priority
+            );
+        }
 
         return $resolverManager;
     }

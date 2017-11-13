@@ -10,10 +10,10 @@ use MSBios\Resolver\AbstractResolverManager;
 use MSBios\Resolver\ResolverInterface;
 
 /**
- * Class ResolverManager
+ * Class ReaderManager
  * @package MSBios\Viewer
  */
-class ResolverManager extends AbstractResolverManager
+class ReaderManager extends AbstractResolverManager
 {
     /**
      * @param array ...$arguments
@@ -23,11 +23,10 @@ class ResolverManager extends AbstractResolverManager
     {
         /** @var ResolverInterface $resolver */
         foreach ($this->queue as $resolver) {
-            if ($resource = $resolver->resolve($arguments)) {
-                return $resource;
+            if ($resolver->resolve($arguments[0])) {
+                return true;
             }
         }
-
-        return $this;
+        return false;
     }
 }

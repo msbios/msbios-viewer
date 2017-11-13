@@ -30,7 +30,8 @@
   "require-dev": {
     "msbios/test": "^1.0",
     "msbios/debug": "^1.0",
-    "msbios/application": "^1.0"
+    "msbios/application": "^1.0",
+    "mockery/mockery": "^1.0"
   },
   "scripts": {
     "cs-check": "phpcs",

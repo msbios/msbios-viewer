@@ -11,6 +11,24 @@ namespace MSBios\Viewer;
  */
 trait ViewerManagerAwareTrait
 {
-    /** @var   */
+    /** @var ViewerManagerInterface */
     protected $viewerManager;
+
+    /**
+     * @return ViewerManagerInterface
+     */
+    public function getViewerManager(): ViewerManagerInterface
+    {
+        return $this->viewerManager;
+    }
+
+    /**
+     * @param ViewerManagerInterface $viewerManager
+     * @return $this
+     */
+    public function setViewerManager(ViewerManagerInterface $viewerManager)
+    {
+        $this->viewerManager = $viewerManager;
+        return $this;
+    }
 }
