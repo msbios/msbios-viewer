@@ -10,25 +10,21 @@ return [
     Module::class => [
 
         /**
-         * Reader resolvers.
+         * Container.
          *
-         * Expects: array
-         * Default: [
-         *     Resolver\ReaderSessionResolver::class => 100
-         * ]
+         * Expects: string
+         * Default: MSBios\Viewer\Container::class
          */
-        'reader_resolvers' => [
-        ],
+        'container' => Container::class,
 
         /**
-         * Writer resolvers.
+         * Viewer resolvers.
          *
          * Expects: array
          * Default: [
-         *     Resolver\WriteSessionResolver::class => 100
          * ]
          */
-        'write_resolvers' => [
-        ]
+        'viewer_resolvers' => [
+        ],
     ]
 ];

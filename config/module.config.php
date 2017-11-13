@@ -33,7 +33,7 @@ return [
         'container' => Container::class,
 
         /**
-         * Reader resolvers.
+         * Viewer resolvers.
          *
          * Expects: array
          * Default: [
