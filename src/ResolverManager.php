@@ -27,7 +27,7 @@ class ResolverManager extends AbstractResolverManager
      * @param array ...$arguments
      * @return mixed
      */
-    public function resolve(array ...$arguments)
+    public function resolve(...$arguments)
     {
         /** @var ResolverInterface $resolver */
         foreach ($this->queue as $resolver) {

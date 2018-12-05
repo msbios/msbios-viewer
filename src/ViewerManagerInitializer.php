@@ -3,16 +3,14 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-namespace MSBios\Viewer\Initializer;
+namespace MSBios\Viewer;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Viewer\ViewerManager;
-use MSBios\Viewer\ViewerManagerAwareInterface;
 use Zend\ServiceManager\Initializer\InitializerInterface;
 
 /**
  * Class ViewerManagerInitializer
- * @package MSBios\Viewer\Initializer
+ * @package MSBios\Viewer
  */
 class ViewerManagerInitializer implements InitializerInterface
 {

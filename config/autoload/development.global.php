@@ -6,10 +6,10 @@
  */
 namespace MSBios\Viewer;
 
-use MSBios\Viewer\Initializer\ViewerManagerInitializer;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
+
     'controllers' => [
         'factories' => [
             Controller\IndexController::class =>
@@ -22,5 +22,20 @@ return [
         'initializers' => [
             new ViewerManagerInitializer
         ]
+    ],
+
+    'view_manager' => [
+        'template_map' => [
+            // Template map
+        ],
+        'template_path_stack' => [
+            __DIR__ . '/../../view',
+        ],
+    ],
+
+    \MSBios\Assetic\Module::class => [
+        'paths' => [
+            __DIR__ . '/../../vendor/msbios/application/themes/default/public/'
+        ],
     ]
 ];
