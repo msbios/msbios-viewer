@@ -6,12 +6,9 @@
 namespace MSBios\Viewer\Factory;
 
 use Interop\Container\ContainerInterface;
-use Interop\Container\Exception\ContainerException;
 use MSBios\Resolver\ResolverManagerInterface;
 use MSBios\Viewer\Module;
 use MSBios\Viewer\ResolverManager;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -21,6 +18,8 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 class ResolverManagerFactory implements FactoryInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
@@ -39,10 +38,12 @@ class ResolverManagerFactory implements FactoryInterface
          * @var int $priority
          */
         foreach ($config['viewer_resolvers'] as $resolverName => $priority) {
-            $resolverManager->attach(
-                $container->get($resolverName),
-                $priority
-            );
+
+            if ($container->has($requestedName)) {
+                $resolverManager->attach(
+                    $container->get($resolverName), $priority
+                );
+            }
         }
 
         return $resolverManager;

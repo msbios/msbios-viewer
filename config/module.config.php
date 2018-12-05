@@ -20,6 +20,10 @@ return [
                 Factory\ViewerManagerFactory::class,
             ResolverManager::class =>
                 Factory\ResolverManagerFactory::class,
+
+            // listeners
+            ListenerAggregate::class =>
+                Factory\ListenerAggregateFactory::class
         ]
     ],
 
@@ -43,5 +47,9 @@ return [
         'viewer_resolvers' => [
             // ...
         ],
+    ],
+
+    'listeners' => [
+        ListenerAggregate::class
     ]
 ];

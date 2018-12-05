@@ -6,6 +6,7 @@
 
 namespace MSBios\Viewer\Controller;
 
+use MSBios\Viewer\ListenerAggregate;
 use MSBios\Viewer\ViewerableAwareInterface;
 use MSBios\Viewer\ViewerManagerAwareInterface;
 use MSBios\Viewer\ViewerManagerAwareTrait;
@@ -39,6 +40,9 @@ class IndexController extends AbstractActionController implements ViewerManagerA
             'watched' => $this->getViewerManager()->watch($double),
             'page' => $page
         ]);
+
+        $this->getEventManager()
+            ->trigger(ListenerAggregate::EVENT_VIEW, ['row' => $double]);
 
         return $viewManager;
     }
