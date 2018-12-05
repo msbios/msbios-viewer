@@ -7,7 +7,8 @@
 ?>
 <h1>Viewer Manager Module</h1>
 
-<?php if ($this->watched) : ?>
+<?php // if ($this->watched) : ?>
+<?php if ($this->viewer($this->double)) : ?>
     <p>Page was marked as viewed!</p>
 <?php else: ?>
     <p>This page has already been viewed.</p>

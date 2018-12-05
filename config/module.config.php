@@ -16,15 +16,29 @@ return [
                 ModuleFactory::class,
             'ViewerSessionContainer' =>
                 Factory\SessionContainerFactory::class,
-            ViewerManager::class =>
-                Factory\ViewerManagerFactory::class,
             ResolverManager::class =>
                 Factory\ResolverManagerFactory::class,
-
-            // listeners
-            ListenerAggregate::class =>
-                Factory\ListenerAggregateFactory::class
         ]
+    ],
+
+    'controller_plugins' => [
+        'factories' => [
+            Controller\Plugin\ViewerPlugin::class =>
+                Factory\ViewerManagerFactory::class
+        ],
+        'aliases' => [
+            'viewer' => Controller\Plugin\ViewerPlugin::class
+        ]
+    ],
+
+    'view_helpers' => [
+        'factories' => [
+            View\Helper\ViewerHelper::class =>
+                Factory\ViewerManagerFactory::class
+        ],
+        'aliases' => [
+            'viewer' => View\Helper\ViewerHelper::class
+        ],
     ],
 
     Module::class => [
@@ -48,8 +62,4 @@ return [
             // ...
         ],
     ],
-
-    'listeners' => [
-        ListenerAggregate::class
-    ]
 ];

@@ -37,12 +37,11 @@ class IndexController extends AbstractActionController implements ViewerManagerA
         /** @var ModelInterface $viewManager */
         $viewManager = parent::indexAction();
         $viewManager->setVariables([
-            'watched' => $this->getViewerManager()->watch($double),
+            // 'watched' => $this->getViewerManager()->watch($double),
+            // 'watched' => $this->viewer($double),
+            'double' => $double,
             'page' => $page
         ]);
-
-        $this->getEventManager()
-            ->trigger(ListenerAggregate::EVENT_VIEW, ['row' => $double]);
 
         return $viewManager;
     }

@@ -38,10 +38,10 @@ class ResolverManagerFactory implements FactoryInterface
          * @var int $priority
          */
         foreach ($config['viewer_resolvers'] as $resolverName => $priority) {
-
             if ($container->has($requestedName)) {
                 $resolverManager->attach(
-                    $container->get($resolverName), $priority
+                    $container->get($resolverName),
+                    $priority
                 );
             }
         }
