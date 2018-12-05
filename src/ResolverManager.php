@@ -31,7 +31,7 @@ class ResolverManager extends AbstractResolverManager
     {
         /** @var ResolverInterface $resolver */
         foreach ($this->queue as $resolver) {
-            if ($resolver->resolve($arguments)) {
+            if ($resolver->resolve(...$arguments)) {
                 return true;
             }
         }

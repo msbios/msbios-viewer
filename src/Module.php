@@ -15,14 +15,15 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
  * Class Module
  * @package MSBios\Assetic
  */
-class Module implements
-    ModuleInterface,
-    AutoloaderProviderInterface
+class Module implements ModuleInterface, AutoloaderProviderInterface
 {
-    const VERSION = '1.0.5';
+    /** @const VERSION */
+    const VERSION = '1.0.6';
 
     /**
-     * @return mixed
+     * @inheritdoc
+     *
+     * @return array|mixed|\Traversable
      */
     public function getConfig()
     {
@@ -30,7 +31,7 @@ class Module implements
     }
 
     /**
-     * Return an array for passing to Zend\Loader\AutoloaderFactory.
+     * @inheritdoc
      *
      * @return array
      */
