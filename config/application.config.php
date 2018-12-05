@@ -8,6 +8,12 @@
 return [
     // Retrieve list of modules used in this application.
     'modules' => [
+        'MSBios\View',
+        'MSBios\Cache',
+        'Zend\Cache',
+        'Zend\Serializer',
+        'Zend\Session',
+        'Zend\Validator',
         'MSBios\Application',
         'Zend\Mvc\Plugin\FilePrg',
         'Zend\Form',
@@ -26,6 +32,7 @@ return [
         'Zend\Navigation',
         'Zend\Router',
         'MSBios\Viewer',
+        'ZendDeveloperTools',
     ],
 
     'module_listener_options' => [

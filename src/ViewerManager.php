@@ -41,7 +41,7 @@ class ViewerManager implements ViewerManagerInterface
         $identifier = $viewer->getViewerIdentifier();
         if (! isset($this->container[$viewer->getViewerIdentifier()])) {
             $this->container[$identifier] = true; // Write to Session Container
-            $this->resolverManager->resolve($viewer); // Push Do Something to Resolvers
+            $this->resolverManager->resolve([$viewer]); // Push Do Something to Resolvers
             return true;
         }
 

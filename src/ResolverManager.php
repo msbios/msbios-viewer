@@ -16,14 +16,22 @@ use MSBios\Resolver\ResolverInterface;
 class ResolverManager extends AbstractResolverManager
 {
     /**
+     * <code>
+     *     foreach ($this->queue as $resolver) {
+     *         if ($resource = $resolver->resolve($arguments)) {
+     *             return $resource;
+     *         }
+     *     }
+     * </code>
+     *
      * @param array ...$arguments
-     * @return $this|mixed
+     * @return mixed
      */
-    public function resolve(...$arguments)
+    public function resolve(array ...$arguments)
     {
         /** @var ResolverInterface $resolver */
         foreach ($this->queue as $resolver) {
-            if ($resolver->resolve($arguments[0])) {
+            if ($resolver->resolve($arguments)) {
                 return true;
             }
         }

@@ -7,16 +7,9 @@
 namespace MSBios\Viewer;
 
 use MSBios\ModuleInterface;
-use Zend\Console\Adapter\AdapterInterface;
-use Zend\EventManager\EventInterface;
-use Zend\EventManager\LazyListenerAggregate;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
-use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
-use Zend\Mvc\ApplicationInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Class Module
@@ -26,7 +19,7 @@ class Module implements
     ModuleInterface,
     AutoloaderProviderInterface
 {
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     /**
      * @return mixed
