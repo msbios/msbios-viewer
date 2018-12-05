@@ -3,18 +3,19 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Viewer;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use MSBios\Factory\ModuleFactory;
 
 return [
 
     'service_manager' => [
         'factories' => [
             Module::class =>
-                Factory\ModuleFactory::class,
-            Container::class =>
-                InvokableFactory::class,
+                ModuleFactory::class,
+            'ViewerSessionContainer' =>
+                Factory\SessionContainerFactory::class,
             ViewerManager::class =>
                 Factory\ViewerManagerFactory::class,
             ResolverManager::class =>
@@ -28,9 +29,9 @@ return [
          * Container.
          *
          * Expects: string
-         * Default: MSBios\Viewer\Container::class
+         * Default: ViewerSessionContainer
          */
-        'container' => Container::class,
+        'container' => 'ViewerSessionContainer',
 
         /**
          * Viewer resolvers.
@@ -40,6 +41,7 @@ return [
          * ]
          */
         'viewer_resolvers' => [
+            // ...
         ],
     ]
 ];
