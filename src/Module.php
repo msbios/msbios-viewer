@@ -20,7 +20,7 @@ use Zend\ModuleManager\Feature\ServiceProviderInterface;
 class Module implements ModuleInterface, AutoloaderProviderInterface, ServiceProviderInterface
 {
     /** @const VERSION */
-    const VERSION = '1.0.7';
+    const VERSION = '1.0.8';
 
     /**
      * @inheritdoc

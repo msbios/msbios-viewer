@@ -25,9 +25,6 @@ return [
     ],
 
     'view_manager' => [
-        'template_map' => [
-            // Template map
-        ],
         'template_path_stack' => [
             __DIR__ . '/../../view',
         ],

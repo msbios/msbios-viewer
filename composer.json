@@ -24,7 +24,7 @@
     }
   },
   "require": {
-    "msbios/msbios": "^1.0",
+    "msbios/session": "^1.0",
     "msbios/resolver": "^1.0"
   },
   "require-dev": {
